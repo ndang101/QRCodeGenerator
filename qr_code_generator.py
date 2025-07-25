@@ -1,9 +1,14 @@
 import qrcode
 
-#take input from user and ask to submit a link
+# Take input from user and ask to submit a link
+# Then remove whitespace from string data
+data = str.strip(input("Enter text or URL: "))
+filename = input("Enter the filename: ")
 
-user_input = input("Enter text or link: ")
 
-img = qrcode.make(user_input)
+
+# Create QR Code using data
+img = qrcode.make(data)
 type(img)  # qrcode.image.pil.PilImage
-img.save("some_file.png")
+# Save file as filename entered
+img.save(f"{filename}.png")
