@@ -7,7 +7,17 @@ data = input("Enter text or URL: ").strip()
 filename = input("Enter the filename: ").strip()
 
 # Create QR Code using data
-img = qrcode.make(data)
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+)
+qr.add_data(data)
+img = qr.make_image(fill_color="black", back_color="white")
+qr.make(fit=True)
+
+
 
 # Save file as filename entered
 img.save(f"{filename}.png")
